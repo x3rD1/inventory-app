@@ -1,3 +1,7 @@
-exports.test = (req, res) => {
-  res.send("This is working!");
+exports.index = (req, res) => {
+  res.render("index");
+};
+
+exports.search = (req, res) => {
+  res.send("Search is working!");
 };
