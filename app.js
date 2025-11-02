@@ -7,6 +7,7 @@ require("dotenv").config();
 const indexRouter = require("./routes/indexRouter");
 const homeRouter = require("./routes/homeRouter");
 const loginRouter = require("./routes/loginRouter");
+const adminRouter = require("./routes/adminRouter");
 // This Access CSS files
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
@@ -29,6 +30,7 @@ app.use(
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
 app.use("/login", loginRouter);
+app.use("/admin", adminRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
