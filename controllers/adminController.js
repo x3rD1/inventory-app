@@ -26,9 +26,9 @@ exports.adminPage = async (req, res) => {
 };
 
 exports.addAnime = async (req, res) => {
-  const { title, genre } = req.body;
+  const { title, genre, link } = req.body;
 
-  await db.add(title, genre);
+  await db.add(title, genre, link);
   res.redirect("/admin/room");
 };
 
