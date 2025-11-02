@@ -9,7 +9,11 @@ const SQL = `
 
     CREATE TABLE IF NOT EXISTS animes (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        title TEXT NOT NULL,
+        title TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS anime_genres (
+        anime_id INT REFERENCES animes(id),
         genre_id INT REFERENCES genres(id)
     );
 `;
