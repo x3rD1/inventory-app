@@ -1,6 +1,6 @@
 const pool = require("./pool");
 
-exports.add = async (title, genres) => {
+exports.add = async (title, genres, link) => {
   const placeholders = genres.map((_, i) => `$${i + 1}`).join(", ");
   const { rows } = await pool.query(
     `SELECT id FROM genres WHERE name IN (${placeholders})`,
@@ -9,8 +9,8 @@ exports.add = async (title, genres) => {
   const genreIds = rows.map((row) => row.id); //[1,2,3]
 
   const { rows: animeRows } = await pool.query(
-    "INSERT INTO animes (title) VALUES ($1) RETURNING id",
-    [title]
+    "INSERT INTO animes (title, link) VALUES ($1, $2) RETURNING id",
+    [title, link]
   );
   const animeId = animeRows[0].id; // rows: [{ id: 1}]
 
@@ -25,8 +25,7 @@ exports.add = async (title, genres) => {
 
 exports.showAnimeList = async () => {
   const { rows } = await pool.query(
-    // TODO select id
-    "SELECT animes.id, animes.title, STRING_AGG(genres.name, ', ') AS genres FROM animes JOIN anime_genres ON animes.id = anime_genres.anime_id JOIN genres ON genres.id = anime_genres.genre_id GROUP BY animes.id, animes.title;"
+    "SELECT animes.*, STRING_AGG(genres.name, ', ') AS genres FROM animes JOIN anime_genres ON animes.id = anime_genres.anime_id JOIN genres ON genres.id = anime_genres.genre_id GROUP BY animes.id, animes.title;"
   );
   return rows;
 };
