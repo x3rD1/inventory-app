@@ -1,7 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const pgSession = require("connect-pg-simple")(session);
-
 const app = express();
 const path = require("node:path");
 require("dotenv").config();
@@ -22,9 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 // Session Config
 app.use(
   session({
-    store: new pgSession({
-      conString: process.env.DATABASE_URL,
-    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
