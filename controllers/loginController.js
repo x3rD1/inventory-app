@@ -6,7 +6,7 @@ exports.login = (req, res) => {
   }
   res.render("login", {
     title: "Animeventory — Login",
-    css: "login.css",
+    css: "styles/login.css",
     script: "",
   });
 };
