@@ -29,7 +29,7 @@ exports.add = async (title, genres, link, image) => {
 
 exports.showAnimeList = async () => {
   const { rows } = await pool.query(
-    "SELECT animes.*, STRING_AGG(genres.name, ', ') AS genres FROM animes JOIN anime_genres ON animes.id = anime_genres.anime_id JOIN genres ON genres.id = anime_genres.genre_id GROUP BY animes.id;"
+    "SELECT animes.*, STRING_AGG(genres.name, ', ') AS genres FROM animes JOIN anime_genres ON animes.id = anime_genres.anime_id JOIN genres ON genres.id = anime_genres.genre_id GROUP BY animes.id ORDER BY animes.title;"
   );
   return rows;
 };
