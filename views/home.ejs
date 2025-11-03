@@ -4,14 +4,14 @@
   <body>
     <div class="actions">
       <button id="openModalBtn" class="btn btn-action">Add Anime</button>
-      <button class="btn btn-action"><a href="/login">Log in</a></button>
+      <a href="/login"><button class="btn btn-action">Log in</button></a>
     </div>
 
     <!-- Modal -->
     <div id="modalContainer" class="modal-container">
       <div class="modal">
         <h2>Enter Anime Title</h2>
-        <form class="anime-form" action="/admin/room/add" method="POST">
+        <form class="anime-form" action="/home/add" method="POST">
           <div class="form-group">
             <label for="title">Anime Title</label>
             <input
