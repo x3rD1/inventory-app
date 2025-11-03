@@ -35,7 +35,7 @@ async function image(title) {
 }
 
 function link(title) {
-  const kebabTitle = title.toLowerCase().replace(/\s+/g, "-");
+  const kebabTitle = toKebabCase(title);
 
   const matchedLink = links.find((link) => link.includes(kebabTitle));
   return matchedLink;
@@ -48,7 +48,7 @@ async function title(title) {
     );
     const data = await response.json();
     // if anime is One Piece
-    const kebabTitle = title.toLowerCase().replace(/\s+/g, "-");
+    const kebabTitle = toKebabCase(title);
     if (kebabTitle === "one-piece") {
       return data.data[1].title_english;
     }
@@ -57,6 +57,13 @@ async function title(title) {
     console.log(error);
     return null;
   }
+}
+
+function toKebabCase(str) {
+  str = str.replace(/[:'’]/g, "");
+  str = str.trim();
+  str = str.replace(/\s+/g, "-");
+  return str.toLowerCase();
 }
 
 module.exports = { image, link, title };
