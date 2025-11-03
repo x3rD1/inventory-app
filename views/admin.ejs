@@ -20,16 +20,6 @@
             />
           </div>
           <div class="form-group">
-            <label for="link">Anime Link</label>
-            <input
-              type="text"
-              id="link"
-              name="link"
-              placeholder="Enter anime link"
-              required
-            />
-          </div>
-          <div class="form-group">
             <label>Genre</label>
             <div class="genre-options">
               <label
@@ -74,19 +64,30 @@
 
     <div class="anime-grid">
       <% animes.forEach(anime => { %>
-      <div
-        class="anime-card"
-        onclick="window.open('<%= anime.link %>', '_blank')"
-      >
-        <img
-          src="<%= anime.image || 'https://png.pngtree.com/png-clipart/20190925/original/pngtree-no-image-vector-illustration-isolated-png-image_4979075.jpg' %>"
-          alt="<%= anime.title %>"
-        />
-        <div class="anime-card-content">
-          <h3 class="anime-card-title"><%= anime.title %></h3>
-          <p class="anime-card-genres">
-            <%= anime.genres || 'No genres available' %>
-          </p>
+      <div class="anime-card">
+        <div onclick='window.open("<%= anime.link %>", "_blank")'>
+          <img
+            src="<%= anime.img_src || 'https://png.pngtree.com/png-clipart/20190925/original/pngtree-no-image-vector-illustration-isolated-png-image_4979075.jpg' %>"
+            alt="<%= anime.title %>"
+          />
+          <div class="anime-card-content">
+            <h3 class="anime-card-title"><%= anime.title %></h3>
+            <p class="anime-card-genres">
+              <%= anime.genres || 'No genres available' %>
+            </p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn update-btn"
+            data-id="<%= anime.id %>"
+            data-title="<%= anime.title %>"
+            data-link="<%= anime.link %>"
+          >
+            Update
+          </button>
+
           <form action="/admin/room/delete/<%= anime.id %>" method="POST">
             <button type="submit" class="btn delete-btn">Delete</button>
           </form>
