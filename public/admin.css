@@ -139,25 +139,27 @@ body {
 }
 
 .genre-options label {
+  border-radius: 20px;
+}
+
+.genre-options span {
   background: #f0f0f0;
   border-radius: 20px;
   padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  transition: 0.2s;
   user-select: none;
+  display: inline-block;
 }
 
 .genre-options input[type="checkbox"] {
   display: none; /* hide the actual checkbox */
 }
 
-.genre-options input[type="checkbox"]:checked + span,
-.genre-options input[type="checkbox"]:checked + label {
+.genre-options input[type="checkbox"]:checked + span {
   background-color: #4caf50;
   color: white;
 }
 
-.genre-options label:hover {
+.genre-options label span:hover {
   background-color: #ddd;
 }
 
@@ -209,6 +211,11 @@ body {
 }
 
 .anime-card-title {
+  display: block;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 18px;
   font-weight: bold;
   color: #222;
@@ -233,4 +240,16 @@ body {
 
 .delete-btn:hover {
   background-color: #e04344;
+}
+
+.btn-action {
+  background-color: #cdcece;
+}
+.btn-action a {
+  text-decoration: none;
+  color: inherit;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
 }
