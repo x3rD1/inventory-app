@@ -2,11 +2,12 @@
 <html lang="en">
   <%- include('partials/head', { title, css}) %>
   <body>
-    <%- include('partials/navigation') %>
-    <h1>This page is working!</h1>
-    <form action="/search" method="GET">
-      <input type="text" name="search" placeholder="Search anime..." />
-      <button type="submit">Search</button>
-    </form>
+    <main class="landing">
+      <div class="landing-content">
+        <h1>Welcome to Animeventory</h1>
+        <p>Store and manage your favorite anime easily!</p>
+        <a href="/home" class="btn-home">Get Started</a>
+      </div>
+    </main>
   </body>
 </html>

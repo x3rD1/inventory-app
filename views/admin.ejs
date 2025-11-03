@@ -2,7 +2,10 @@
 <html lang="en">
   <%- include('partials/head', {title, css, script, animes}) %>
   <body>
-    <button id="openModalBtn" class="btn">Add Anime</button>
+    <div class="actions">
+      <button class="btn btn-action"><a href="/home">Back</a></button>
+      <button id="openModalBtn" class="btn btn-action">Add Anime</button>
+    </div>
 
     <!-- Modal -->
     <div id="modalContainer" class="modal-container">
