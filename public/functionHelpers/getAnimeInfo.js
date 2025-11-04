@@ -37,8 +37,18 @@ async function image(title) {
 function link(title) {
   const kebabTitle = toKebabCase(title);
 
-  const matchedLink = links.find((link) => link.includes(kebabTitle));
-  return matchedLink;
+  let bestMatch = "";
+  let highestScore = 0;
+
+  for (const link of links) {
+    const score = diceCoefficient(kebabTitle, link);
+    if (score > highestScore) {
+      highestScore = score;
+      bestMatch = link;
+    }
+  }
+
+  return bestMatch || null;
 }
 
 async function title(title) {
@@ -72,4 +82,30 @@ function toKebabCase(str) {
   return str.toLowerCase();
 }
 
+function getBigrams(str) {
+  const s = str.toLowerCase();
+  const bigrams = [];
+  for (let i = 0; i < s.length; i++) {
+    bigrams.push(s.slice(i, i + 2));
+  }
+  return bigrams;
+}
+
+function diceCoefficient(a, b) {
+  const bigramsA = getBigrams(a);
+  const bigramsB = getBigrams(b);
+
+  let intersection = 0;
+  const bigramsBCopy = [...bigramsB];
+
+  for (const bg of bigramsA) {
+    const index = bigramsBCopy.indexOf(bg);
+    if (index !== -1) {
+      intersection++;
+      bigramsBCopy.splice(index, 1);
+    }
+  }
+
+  return (2 * intersection) / (bigramsA.length + bigramsB.length);
+}
 module.exports = { image, link, title };
