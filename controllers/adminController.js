@@ -1,11 +1,26 @@
 require("dotenv").config();
 const db = require("../db/queries");
 const getAnime = require("../public/functionHelpers/getAnimeInfo");
+const { validationResult } = require("express-validator");
 
 exports.adminPost = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.render("login", {
+      title: "Animeventory — Login",
+      css: "styles/login.css",
+      script: "",
+      errors: errors.array(),
+    });
+  }
   const password = req.body.password;
   if (password !== process.env.ADMIN_PASS) {
-    return res.redirect("/login");
+    return res.render("login", {
+      title: "Animeventory — Login",
+      css: "styles/login.css",
+      script: "",
+      errors: [{ msg: "Invalid password" }],
+    });
   }
 
   req.session.isAdmin = true;
