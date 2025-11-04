@@ -261,3 +261,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.title-error,
+.genre-error {
+  color: red;
+}

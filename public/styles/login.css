@@ -53,6 +53,10 @@ input[type="password"]:focus {
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
 }
 
+.pass-error {
+  color: red;
+}
+
 /* Button */
 button {
   background-color: #00adb5;
