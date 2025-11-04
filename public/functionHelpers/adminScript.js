@@ -8,7 +8,6 @@ const title = document.querySelector("#title");
 
 openBtn.addEventListener("click", () => {
   title.value = "";
-  animeForm.action = "/admin/room/add";
   modalContainer.classList.add("active");
 });
 

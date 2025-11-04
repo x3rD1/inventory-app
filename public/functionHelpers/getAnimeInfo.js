@@ -10,7 +10,7 @@ async function image(title) {
     );
     const data = await response.json();
     // If anime is One Piece
-    if (title.toLowerCase().replace(/\s+/g, "-") === "one-piece") {
+    if (toKebabCase(title) === "one-piece") {
       const anime = data.data[1];
       return (
         anime.images?.webp?.large_image_url ||
@@ -47,12 +47,18 @@ async function title(title) {
       `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(title)}`
     );
     const data = await response.json();
-    // if anime is One Piece
+
     const kebabTitle = toKebabCase(title);
+    // if anime is One Piece
     if (kebabTitle === "one-piece") {
       return data.data[1].title_english;
     }
-    return data.data[0].title_english;
+
+    const uniTitle =
+      data.data[0].title_english === null
+        ? data.data[0].title
+        : data.data[0].title_english;
+    return uniTitle;
   } catch (error) {
     console.log(error);
     return null;
