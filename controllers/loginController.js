@@ -8,5 +8,6 @@ exports.login = (req, res) => {
     title: "Animeventory — Login",
     css: "styles/login.css",
     script: "",
+    errors: "",
   });
 };
