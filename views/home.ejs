@@ -14,16 +14,21 @@
         <form class="anime-form" action="/home/add" method="POST">
           <div class="form-group">
             <label for="title">Anime Title</label>
+            <span class="title-error" style="display: none">
+              Please enter a title.
+            </span>
             <input
               type="text"
               id="title"
               name="title"
               placeholder="Enter anime title"
-              required
             />
           </div>
           <div class="form-group">
             <label>Genre</label>
+            <span class="genre-error" style="display: none">
+              Please select at least one genre.
+            </span>
             <div class="genre-options">
               <div class="label-wrapper">
                 <label
