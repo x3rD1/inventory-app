@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const adminRouter = Router();
 const adminController = require("../controllers/adminController");
+const validator = require("../validators/loginValidator");
 
-adminRouter.post("/", adminController.adminPost);
+adminRouter.post("/", validator, adminController.adminPost);
 adminRouter.get("/room", adminController.adminPage);
 adminRouter.post("/room/add", adminController.addAnime);
 adminRouter.post("/room/update/:id", adminController.updateAnime);
