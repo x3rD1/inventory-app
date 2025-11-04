@@ -50,7 +50,8 @@ animeForm.addEventListener("submit", (e) => {
     return;
   }
 
-  [titleError, genreError].style.display = "none";
+  titleError.style.display = "none";
+  genreError.style.display = "none";
   animeForm.submit();
 });
 
