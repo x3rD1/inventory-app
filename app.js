@@ -20,6 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 // Session Config
+app.set("trust proxy", 1);
 app.use(
   session({
     store: new pgSession({
@@ -30,6 +31,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     rolling: true,
+    proxy: true,
     cookie: {
       maxAge: 1000 * 60 * 60,
       httpOnly: true,
