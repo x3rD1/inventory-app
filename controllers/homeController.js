@@ -14,7 +14,7 @@ exports.home = async (req, res) => {
 exports.addAnime = async (req, res) => {
   const { title, genre } = req.body;
   const newTitle = await getAnime.title(title);
-  const image = (await getAnime.image(newTitle)) || null;
+  const image = await getAnime.image(newTitle);
   const link = getAnime.link(newTitle);
   await db.add(newTitle, genre, link, image);
   res.redirect("/home");
